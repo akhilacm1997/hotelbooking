@@ -14,18 +14,20 @@ public class Status {
 	String Laundry;
 	String num1;
 	String i;
+	int id;
 	static int m=0;
-	static int id=0;
+	static int room=1;
+	static int []arr= new int[25];
   
-  
-	
-	public Status(String num1) throws IOException {
+    Services sr = new Services();
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public Status(String num1,int id) throws IOException {
 		this.num1=num1;
-		int []arr= new int[25];
-		 for(int i=0;i<25;i++)
+		this.id=id;
+		/* for(int i=0;i<25;i++)
 		   {
 		   	arr[i]=++i;
-		   }
+		   }*/
 	switch(num1)
 	{
 	case "1":
@@ -34,7 +36,7 @@ public class Status {
 	do {
 		    System.out.println("Booking");
 		    System.out.println("please choose your service required");
-		    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		    
 		    System.out.println("Do you want ac room(please  enter:(ac/nac)");
 		    ac = br.readLine();
 		    System.out.println("Do you want single or double cot room (please  enter:(single/double)");
@@ -46,7 +48,7 @@ public class Status {
 			System.out.println("Do you want any laundry services ?(please  enter:(Laundry/no Laundry)");
 			Laundry=br.readLine();
 			
-	       Services sr = new Services();
+	   
 	       sr.Services1(ac,cot,cableConnection,wifi,Laundry);
 	       System.out.println(ac+"room");
 	       System.out.println(cot+"room");
@@ -57,9 +59,13 @@ public class Status {
 	       i=br.readLine();
 			}while(i.equalsIgnoreCase("no"));
 	        
-           arr[m]=++id;
-        		   m++;
-        		   System.out.println("Thank you for booking. Your room number is "+id);
+           arr[m]=room;
+           System.out.println(m);
+           System.out.println("store array element"+arr[m]);
+        		 m++;
+        		 // System.out.println("m1 is "+ "" +m);
+        		   System.out.println("Thank you for booking. Your room number is "+ room);
+        		   room++;
         	break;	   
 	
 	}
@@ -67,25 +73,29 @@ public class Status {
 		
 	{
 		 System.out.println("enter which room you want?");
+		// System.out.println(m);
 		 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		 int j= Integer.parseInt(br.readLine());
+		
 		 for(int i=0;i<m;i++)
 		 {
-			 if(arr[i]==j)
+			// System.out.println(m);
+			//System.out.println( "array element "+arr[i]);
+			if(arr[i]==j)
 			 {
-				 System.out.println("Room number "+ j+ " is booked");
+				 System.out.println("Room number "+ arr[i]+ " is booked");
 		 }
-			
-		 }
+					 }
 		
 		 break;
 	}
 	case "3":
 	{
 		System.out.println("exit");
-		System.exit(0);
+	break;
 	}
 	}
+	
 	}
 
 }
